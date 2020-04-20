@@ -77,7 +77,15 @@ export default function App() {
         </Tab.Navigator>
         :
         <Stack.Navigator>
-          <Stack.Screen name="Signup" component={SignupScreen} initialParams={{toggleLogin: () => setIsLoggedIn(!isLoggedIn)}} />
+          <Stack.Screen
+            name="Signup"
+            component={SignupScreen}
+            initialParams={{toggleLogin: () => setIsLoggedIn(!isLoggedIn)}}
+            options={{
+              title: "Sign Up",
+              header: () => null,
+            }}  
+          />
           <Stack.Screen name="Signin" component={SigninScreen} />
         </Stack.Navigator>
       }
