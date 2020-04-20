@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -16,7 +16,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 export default function App() {
-  const isLoggedIn = false;
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const CustomTheme = {
     ...DefaultTheme,
@@ -30,7 +30,9 @@ export default function App() {
     return (
       <Stack.Navigator>
         <Stack.Screen name="TrackList" component={TrackListScreen} />
-        <Stack.Screen name="TrackDetail" component={TrackDetailScreen} />
+        <Stack.Screen name="TrackDetail" component={TrackDetailScreen} options={{
+          headerBackTitle: "Back"
+        }} />
       </Stack.Navigator>
     );
   }
@@ -75,7 +77,7 @@ export default function App() {
         </Tab.Navigator>
         :
         <Stack.Navigator>
-          <Stack.Screen name="Signup" component={SignupScreen} />
+          <Stack.Screen name="Signup" component={SignupScreen} initialParams={{toggleLogin: () => setIsLoggedIn(!isLoggedIn)}} />
           <Stack.Screen name="Signin" component={SigninScreen} />
         </Stack.Navigator>
       }
