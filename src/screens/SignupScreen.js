@@ -5,41 +5,23 @@ import { Context as AuthContext } from '../context/AuthContext';
 import { MaterialIcons } from '@expo/vector-icons';
 import Spacer from '../components/Spacer';
 import { iosColors } from '../util/globalStyles';
+import AuthForm from '../components/AuthForm';
 
 const SignupScreen = ({ navigation, route }) => {
   const { state, signup } = useContext(AuthContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
 
   return (
     <View style={styles.container}>
       <ScrollView contentContainerStyle={styles.scrollView}>
-        <Text style={styles.title}>Sign Up For Tracker</Text>
-        <Input label="Email" onChangeText={setEmail} autoCapitalize="none" autoCorrect={false} keyboardType="email-address" />
-        <Spacer vertical={10} />
-        <Input label="Password" onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true} />
-        
-        {state.errorMessage
-          ? <Text style={styles.errorMessage}>{state.errorMessage}</Text>
-          : <Spacer vertical={20} />
-        }
-        <Button
-          onPress={() => signup(email, password)}
-          title="Sign Up"
-          buttonStyle={{
-            backgroundColor: iosColors.darkBlue
-          }}
-          containerStyle={{
-            paddingHorizontal: 20,
-          }}
+
+        <AuthForm
+          headerText="Sign Up For Tracker"
+          errorMessage={state.errorMessage}
+          onSubmit={(email, password) => signup(email, password)}
+          submitBtnText="Sign Up"
+          onNavigate={() => navigation.navigate('Signin')}
+          navLinkText="Already have an account? Sign in"
         />
-        <View style={styles.linkContainer}>
-          <TouchableOpacity onPress={() => navigation.navigate('Signin')} style={styles.linkButton}>
-            <Text style={styles.linkText}>
-              Already have an account? Sign in
-            </Text>
-          </TouchableOpacity>
-        </View>
 
         <View style={{paddingTop: 40}}>
           <Text>{JSON.stringify(state, null, 2)}</Text>
