@@ -4,7 +4,7 @@ import { Context as AuthContext } from '../context/AuthContext';
 import AuthForm from '../components/AuthForm';
 
 const SigninScreen = ({ navigation }) => {
-  const { state, signup } = useContext(AuthContext);
+  const { state, signin } = useContext(AuthContext);
 
   return (
     <View style={styles.container}>
@@ -13,7 +13,7 @@ const SigninScreen = ({ navigation }) => {
         <AuthForm
           headerText="Sign In For Tracker"
           errorMessage={state.errorMessage}
-          onSubmit={(email, password) => signup(email, password)}
+          onSubmit={(email, password) => signin(email, password)}
           submitBtnText="Sign In"
           onNavigate={() => navigation.navigate('Signup')}
           navLinkText="Don't have an account? Sign up"

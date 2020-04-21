@@ -55,13 +55,6 @@ function App() {
       {authState.token !== null ?
         <Tab.Navigator initialRouteName="TrackListFlow">
           <Tab.Screen
-            name="Account"
-            component={AccountTab}
-            options={{
-              tabBarLabel: "My Account"
-            }}
-          />
-          <Tab.Screen
             name="TrackCreate"
             component={TrackCreateTab}
             options={{
@@ -75,23 +68,18 @@ function App() {
               tabBarLabel: "My Tracks",
             }}
           />
+          <Tab.Screen
+            name="Account"
+            component={AccountTab}
+            options={{
+              tabBarLabel: "My Account"
+            }}
+          />
         </Tab.Navigator>
         :
         <Stack.Navigator>
-          <Stack.Screen
-            name="Signup"
-            component={SignupScreen}
-            options={{
-              header: () => null,
-            }}  
-          />
-          <Stack.Screen
-            name="Signin"
-            component={SigninScreen}
-            options={{
-              header: () => null
-            }}
-          />
+          <Stack.Screen name="Signup" component={SignupScreen} options={{ header: () => null }} />
+          <Stack.Screen name="Signin" component={SigninScreen} options={{ header: () => null }} />
         </Stack.Navigator>
       }
     </NavigationContainer>

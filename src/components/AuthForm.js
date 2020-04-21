@@ -38,7 +38,6 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitBtnText, onNaviga
         </TouchableOpacity>
       </View>
 
-      
     </React.Fragment>
   )
 }
