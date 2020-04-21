@@ -3,6 +3,7 @@ import { StyleSheet, Text, View, StatusBar } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { Provider as AuthProvider } from './src/context/AuthContext';
 import AccountScreen     from './src/screens/AccountScreen';
 import SigninScreen      from './src/screens/SigninScreen';
 import SignupScreen      from './src/screens/SignupScreen';
@@ -15,7 +16,7 @@ StatusBar.setBarStyle('dark-content');
 const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
-export default function App() {
+function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const CustomTheme = {
@@ -101,3 +102,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default () => {
+  return (
+    <AuthProvider>
+      <App />
+    </AuthProvider>
+  )
+}
