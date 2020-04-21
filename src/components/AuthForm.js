@@ -17,7 +17,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitBtnText, onNaviga
       <Input label="Password" onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true} />
       
       {errorMessage
-        ? <Text style={styles.errorMessage}>{state.errorMessage}</Text>
+        ? <Text style={styles.errorMessage}>{errorMessage}</Text>
         : <Spacer vertical={20} />
       }
       <Button
