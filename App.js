@@ -53,7 +53,7 @@ function App() {
   return (
     <NavigationContainer theme={CustomTheme}>
       {authState.token !== null ?
-        <Tab.Navigator initialRouteName="Account">
+        <Tab.Navigator initialRouteName="TrackListFlow">
           <Tab.Screen
             name="Account"
             component={AccountTab}

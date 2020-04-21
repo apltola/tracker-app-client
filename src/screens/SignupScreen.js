@@ -33,6 +33,13 @@ const SignupScreen = ({ navigation, route }) => {
             paddingHorizontal: 20,
           }}
         />
+        <View style={styles.linkContainer}>
+          <TouchableOpacity onPress={() => navigation.navigate('Signin')} style={styles.linkButton}>
+            <Text style={styles.linkText}>
+              Already have an account? Sign in
+            </Text>
+          </TouchableOpacity>
+        </View>
 
         <View style={{paddingTop: 40}}>
           <Text>{JSON.stringify(state, null, 2)}</Text>
@@ -66,6 +73,17 @@ const styles = StyleSheet.create({
     height: 40,
     lineHeight: 40,
   },
+  linkContainer: {
+    paddingTop: 10,
+    alignItems: 'center',
+  },
+  linkButton: {
+    padding: 10
+  },
+  linkText: {
+    color: iosColors.darkBlue,
+    fontSize: 16,
+  }
 });
 
 export default SignupScreen;
