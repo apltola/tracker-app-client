@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { StyleSheet, Text, View, StatusBar } from 'react-native';
+import React, { useState, useContext } from 'react';
+import { StatusBar } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Provider as AuthProvider } from './src/context/AuthContext';
+import { Provider as AuthProvider, Context as AuthContext } from './src/context/AuthContext';
 import AccountScreen     from './src/screens/AccountScreen';
 import SigninScreen      from './src/screens/SigninScreen';
 import SignupScreen      from './src/screens/SignupScreen';
@@ -17,7 +17,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function App() {
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const authState = useContext(AuthContext).state;
 
   const CustomTheme = {
     ...DefaultTheme,
@@ -52,7 +52,7 @@ function App() {
 
   return (
     <NavigationContainer theme={CustomTheme}>
-      {isLoggedIn ?
+      {authState.token !== null ?
         <Tab.Navigator initialRouteName="Account">
           <Tab.Screen
             name="Account"
@@ -81,7 +81,6 @@ function App() {
           <Stack.Screen
             name="Signup"
             component={SignupScreen}
-            initialParams={{toggleLogin: () => setIsLoggedIn(!isLoggedIn)}}
             options={{
               title: "Sign Up",
               header: () => null,
@@ -93,15 +92,6 @@ function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
 
 export default () => {
   return (
