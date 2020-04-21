@@ -82,11 +82,16 @@ function App() {
             name="Signup"
             component={SignupScreen}
             options={{
-              title: "Sign Up",
               header: () => null,
             }}  
           />
-          <Stack.Screen name="Signin" component={SigninScreen} />
+          <Stack.Screen
+            name="Signin"
+            component={SigninScreen}
+            options={{
+              header: () => null
+            }}
+          />
         </Stack.Navigator>
       }
     </NavigationContainer>

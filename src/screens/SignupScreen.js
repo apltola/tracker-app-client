@@ -1,10 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
-import { Input, Button } from 'react-native-elements';
+import React, { useContext } from 'react';
+import { StyleSheet, Text, View, ScrollView } from 'react-native';
 import { Context as AuthContext } from '../context/AuthContext';
-import { MaterialIcons } from '@expo/vector-icons';
-import Spacer from '../components/Spacer';
-import { iosColors } from '../util/globalStyles';
 import AuthForm from '../components/AuthForm';
 
 const SignupScreen = ({ navigation, route }) => {
@@ -40,32 +36,6 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingVertical: 10,
   },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    paddingTop: 60,
-    paddingBottom: 60,
-    paddingLeft: 10,
-  },
-  errorMessage: {
-    fontSize: 16,
-    color: iosColors.red,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    height: 40,
-    lineHeight: 40,
-  },
-  linkContainer: {
-    paddingTop: 10,
-    alignItems: 'center',
-  },
-  linkButton: {
-    padding: 10
-  },
-  linkText: {
-    color: iosColors.darkBlue,
-    fontSize: 16,
-  }
 });
 
 export default SignupScreen;

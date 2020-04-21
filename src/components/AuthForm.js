@@ -44,14 +44,6 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitBtnText, onNaviga
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingHorizontal: 10,
-  },
-  scrollView: {
-    flex: 1,
-    paddingVertical: 10,
-  },
   title: {
     fontWeight: 'bold',
     fontSize: 20,
