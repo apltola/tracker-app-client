@@ -1,5 +1,5 @@
-import React, { useContext } from 'react';
-import { StatusBar } from 'react-native';
+import React, { useContext, useEffect } from 'react';
+import { StatusBar, View, Text } from 'react-native';
 import { NavigationContainer, DefaultTheme } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
@@ -10,6 +10,7 @@ import SignupScreen      from './src/screens/SignupScreen';
 import TrackCreateScreen from './src/screens/TrackCreateScreen';
 import TrackDetailScreen from './src/screens/TrackDetailScreen';
 import TrackListScreen   from './src/screens/TrackListScreen';
+import ResolveAuthScreen from './src/screens/ResolveAuthScreen';
 
 StatusBar.setBarStyle('dark-content');
 
@@ -17,7 +18,7 @@ const Tab = createBottomTabNavigator();
 const Stack = createStackNavigator();
 
 function App() {
-  const authState = useContext(AuthContext).state;
+  const { state: authState } = useContext(AuthContext);
 
   const CustomTheme = {
     ...DefaultTheme,
@@ -77,7 +78,8 @@ function App() {
           />
         </Tab.Navigator>
         :
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName={'ResolveAuth'}>
+          <Stack.Screen name="ResolveAuth" component={ResolveAuthScreen} options={{ header: () => null }} />
           <Stack.Screen name="Signup" component={SignupScreen} options={{ header: () => null }} />
           <Stack.Screen name="Signin" component={SigninScreen} options={{ header: () => null }} />
         </Stack.Navigator>

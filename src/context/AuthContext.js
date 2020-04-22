@@ -4,8 +4,14 @@ import trackerApi from '../api/tracker';
 
 const authReducer = (state, action) => {
   switch (action.type) {
+    //case 'restore_token':
+    //  return { errorMessage: '', token: action.payload, ...state }
+
     case 'signin':
-      return { errorMessage: '', token: action.payload }
+      return { errorMessage: '', token: action.payload, isSignedOut: false }
+
+    case 'signout':
+      return { token: null, errorMessage: '', isSignedOut: true }
     
     case 'add_error':
       return { ...state, errorMessage: action.payload }
@@ -15,6 +21,17 @@ const authReducer = (state, action) => {
 
     default:
       return state;
+  }
+}
+
+const restoreStoredToken = dispatch => async cb => {
+  //let token = null;
+  const token = await AsyncStorage.getItem('token');
+  if (token) {
+    dispatch({ type: 'signin', payload: token });
+  }
+  if (cb) {
+    cb();
   }
 }
 
@@ -40,10 +57,9 @@ const signin = dispatch => async (email, password) => {
   }
 }
 
-const signout = dispatch => {
-  return () => {
-    //sign out...
-  }
+const signout = dispatch => async () => {
+  await AsyncStorage.removeItem('token');
+  dispatch({ type: 'signout' });
 }
 
 const clearErrorMessage = dispatch => () => {
@@ -52,6 +68,6 @@ const clearErrorMessage = dispatch => () => {
 
 export const { Provider, Context } = createDataContext(
   authReducer,
-  { signin, signout, signup, clearErrorMessage },
-  { token: null, errorMessage: '' }
+  { signin, signout, signup, clearErrorMessage, restoreStoredToken },
+  { token: null, errorMessage: '', isSignedOut: false }
 );

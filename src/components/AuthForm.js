@@ -13,7 +13,7 @@ const AuthForm = ({ headerText, errorMessage, onSubmit, submitBtnText, onNaviga
       <Text style={styles.title}>{headerText}</Text>
       <Input label="Email" onChangeText={setEmail} autoCapitalize="none" autoCorrect={false} keyboardType="email-address" />
       <Spacer vertical={10} />
-      <Input label="Password" onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true} />
+      <Input label="Password" onChangeText={setPassword} autoCapitalize="none" autoCorrect={false} secureTextEntry={true} textContentType="none" />
       
       {errorMessage
         ? <Text style={styles.errorMessage}>{errorMessage}</Text>
