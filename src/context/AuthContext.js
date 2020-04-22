@@ -5,7 +5,7 @@ import trackerApi from '../api/tracker';
 const authReducer = (state, action) => {
   switch (action.type) {
     case 'signin':
-      return { errorMessage: '', token: action.password }
+      return { errorMessage: '', token: action.payload }
     
     case 'add_error':
       return { ...state, errorMessage: action.payload }

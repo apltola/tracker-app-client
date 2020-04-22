@@ -1,7 +1,6 @@
-import React, { useState, useContext } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { Input, Button } from 'react-native-elements';
-import { Context as AuthContext } from '../context/AuthContext';
 import { iosColors } from '../util/globalStyles';
 import Spacer from './Spacer';
 
