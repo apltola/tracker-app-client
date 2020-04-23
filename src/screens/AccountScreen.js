@@ -22,3 +22,5 @@ const styles = StyleSheet.create({
 });
 
 export default AccountScreen;
+
+//https://www.npmjs.com/package/react-native-drawer

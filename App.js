@@ -51,6 +51,8 @@ function App() {
     </Stack.Navigator>
   )
 
+  console.log('token => ', authState.token);
+
   return (
     <NavigationContainer theme={CustomTheme}>
       {authState.token !== null ?
