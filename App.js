@@ -32,9 +32,9 @@ function App() {
   const TrackListFlow = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="TrackList" component={TrackListScreen} />
-        <Stack.Screen name="TrackDetail" component={TrackDetailScreen} options={{
-          headerBackTitle: "Back"
+        <Stack.Screen name="My Tracks" component={TrackListScreen} />
+        <Stack.Screen name="Track Detail" component={TrackDetailScreen} options={{
+          headerBackTitle: "Back",
         }} />
       </Stack.Navigator>
     );
@@ -42,7 +42,9 @@ function App() {
 
   const TrackCreateTab = () => (
     <Stack.Navigator>
-      <Stack.Screen name="New Track" component={TrackCreateScreen} />
+      <Stack.Screen name="New Track" component={TrackCreateScreen} options={{
+        header: () => null,
+      }} />
     </Stack.Navigator>
   );
 
@@ -60,9 +62,9 @@ function App() {
         <Tab.Navigator initialRouteName="TrackListFlow">
           <Tab.Screen
             name="TrackCreate"
-            component={TrackCreateTab}
+            component={TrackCreateScreen}
             options={{
-              tabBarLabel: "New Track"
+              tabBarLabel: "Create New Track"
             }}
           />
           <Tab.Screen

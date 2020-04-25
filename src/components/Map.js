@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, Dimensions, ActivityIndicator } from 'react-na
 import MapView, { Polyline, Circle } from 'react-native-maps';
 import { Context as LocationContext } from '../context/LocationContext';
 
+const SCREEN_HEIGHT = Dimensions.get('window').height;
+
 const Map = () => {
   const { state: { currentLocation } } = useContext(LocationContext);
   //console.log('state => ', state);
@@ -38,7 +40,7 @@ const Map = () => {
 
 const styles = StyleSheet.create({
   map: {
-    height: 500,
+    height: SCREEN_HEIGHT*0.55,
   }
 });
 
