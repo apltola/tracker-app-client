@@ -6,7 +6,7 @@ import { Context as LocationContext } from '../context/LocationContext';
 const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 const Map = () => {
-  const { state: { currentLocation } } = useContext(LocationContext);
+  const { state: { currentLocation, locations } } = useContext(LocationContext);
   //console.log('state => ', state);
 
   if (!currentLocation) {
@@ -22,11 +22,11 @@ const Map = () => {
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
       }}
-      region={{
+      /* region={{
         ...currentLocation.coords,
         latitudeDelta: 0.01,
         longitudeDelta: 0.01
-      }}
+      }} */
     >
       <Circle
         center={currentLocation.coords}
@@ -34,6 +34,7 @@ const Map = () => {
         strokeColor="rgba(158,158,255,1.0)"
         fillColor="rgba(158,158,255,0.5)"
       />
+      <Polyline coordinates={locations.map(loc => loc.coords)} />
     </MapView>
   )
 }

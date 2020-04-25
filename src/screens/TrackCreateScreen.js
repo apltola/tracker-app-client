@@ -1,12 +1,10 @@
 import '../_mockLocation';
-import React, { useEffect, useState, useContext, useCallback } from 'react';
+import React, { useContext, useCallback } from 'react';
 import { StyleSheet, Text, View, ScrollView, Dimensions, SafeAreaView } from 'react-native';
 import { useIsFocused } from '@react-navigation/native';
-import { requestPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location';
 import { Context as LocationContext } from '../context/LocationContext';
 import Map from '../components/Map';
 import useLocation from '../hooks/useLocation';
-import TrackForm from '../components/TrackForm';
 import { Input, Button } from 'react-native-elements';
 
 const TrackCreateScreen = () => {
@@ -15,13 +13,12 @@ const TrackCreateScreen = () => {
   callback = useCallback((location) => {
     addLocation(location, state.recording);
   }, [state.recording]);
-  const [err] = useLocation(isFocused, callback);
-  const [trackName, setTrackName] = useState("");
+  const [err] = useLocation(isFocused || state.recording, callback);
   console.log(state.locations.length)
 
   return (
     <SafeAreaView style={{ flex: 1, }}>
-      <ScrollView contentContainerStyle={{borderWidth: 2, borderColor: 'red' }}>
+      <ScrollView>
         <Input
           label="New Track Name"
           containerStyle={styles.input}
@@ -43,7 +40,7 @@ const TrackCreateScreen = () => {
               title="Start Recording"
               buttonStyle={styles.button}
               raised={true}
-              disabled={!state.name}
+              //disabled={!state.name}
               onPress={startRecording}
             />
           }
