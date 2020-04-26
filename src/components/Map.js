@@ -30,9 +30,10 @@ const Map = () => {
     >
       <Circle
         center={currentLocation.coords}
-        radius={25}
-        strokeColor="rgba(158,158,255,1.0)"
-        fillColor="rgba(158,158,255,0.5)"
+        radius={20}
+        strokeWidth={5}
+        strokeColor="rgba(20, 126, 251, 1.0)"
+        fillColor="rgba(20, 126, 251, 0.5)"
       />
       <Polyline coordinates={locations.map(loc => loc.coords)} />
     </MapView>
@@ -41,7 +42,7 @@ const Map = () => {
 
 const styles = StyleSheet.create({
   map: {
-    height: SCREEN_HEIGHT*0.55,
+    height: SCREEN_HEIGHT*0.50,
   }
 });
 
