@@ -4,11 +4,14 @@ import { Context as LocationContext } from '../context/LocationContext';
 
 export default () => {
   const { createTrack } = useContext(TrackContext);
-  const { state: { locations, name }} = useContext(LocationContext);
+  const { state: { locations, name }, reset } = useContext(LocationContext);
 
-  const saveTrack = () => {
-    //console.log('jeejee');
-    createTrack(name, locations);
+  const saveTrack = async (callback) => {
+    await createTrack(name, locations);
+    reset();
+    if (callback) {
+      callback();
+    }
   }
 
   return [saveTrack];

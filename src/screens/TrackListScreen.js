@@ -1,16 +1,39 @@
-import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import React, { useEffect, useContext } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, FlatList } from 'react-native';
+import { ListItem } from 'react-native-elements';
+import { Context as TrackContext } from '../context/TrackContext';
 
 const TrackListScreen = ({ navigation }) => {
+  const { state: {tracks}, fetchTracks } = useContext(TrackContext);
+
+  useEffect(() => {
+    const unsubscribe = navigation.addListener('focus', () => {
+      fetchTracks();
+    });
+
+    return unsubscribe;
+  }, []);
 
   return (
     <View>
-      <Text>
-        TRACK_LIST_SCREEN
-      </Text>
-      <TouchableOpacity onPress={() => navigation.navigate('TrackDetail')}>
-        <Text>go to trackdetail</Text>
-      </TouchableOpacity>
+      <FlatList
+        data={tracks}
+        keyExtractor={item => item._id}
+        renderItem={({ item }) => {
+          return (
+            <TouchableOpacity>
+              <ListItem chevron title={item.name} />
+            </TouchableOpacity>
+          );
+        }}
+      />
+
+      
+      {/* <ScrollView contentContainerStyle={{marginTop: 100,}}>
+        <View>
+          <Text>{JSON.stringify(tracks, null, 2)}</Text>
+        </View>
+      </ScrollView> */}
     </View>
   );
 }
