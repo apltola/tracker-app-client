@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Context as TrackContext } from '../context/TrackContext';
 
-const TrackDetailScreen = () => {
+const TrackDetailScreen = ({route: { params }}) => {
+  const { state: { tracks }} = useContext(TrackContext);
+  const { _id } = params;
+  const track = tracks.find(t => t._id === _id);
+
   return (
     <View>
       <Text>
-        TRACK_DETAIL_SCREEN
+        {JSON.stringify(track, null , 2)}
       </Text>
     </View>
   );
