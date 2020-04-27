@@ -33,9 +33,12 @@ function App() {
   const TrackListFlow = () => {
     return (
       <Stack.Navigator>
-        <Stack.Screen name="My Tracks" component={TrackListScreen} />
-        <Stack.Screen name="Track Detail" component={TrackDetailScreen} options={{
+        <Stack.Screen name="MyTracks" component={TrackListScreen} options={{
+          headerTitle: 'My Tracks'
+        }} />
+        <Stack.Screen name="TrackDetail" component={TrackDetailScreen} options={{
           headerBackTitle: "Back",
+          headerTitle: "Track Detail"
         }} />
       </Stack.Navigator>
     );

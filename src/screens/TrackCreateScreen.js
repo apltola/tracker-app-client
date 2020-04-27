@@ -42,7 +42,7 @@ const TrackCreateScreen = () => {
               title="Start Recording"
               buttonStyle={styles.button}
               raised={true}
-              //disabled={!state.name}
+              disabled={!state.name}
               onPress={startRecording}
             />
           }

@@ -24,14 +24,14 @@ const authReducer = (state, action) => {
   }
 }
 
-const restoreStoredToken = dispatch => async cb => {
+const restoreStoredToken = dispatch => async callback => {
   //let token = null;
   const token = await AsyncStorage.getItem('token');
   if (token) {
     dispatch({ type: 'signin', payload: token });
   }
-  if (cb) {
-    cb();
+  if (callback) {
+    callback();
   }
 }
 

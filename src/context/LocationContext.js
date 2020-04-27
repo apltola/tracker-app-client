@@ -33,6 +33,7 @@ const stopRecording = dispatch => () => {
 }
 
 const addLocation = dispatch => (location, recording) => {
+  console.log('add location: ', location);
   dispatch({ type: 'add_current_location', payload: location });
   if (recording) {
     dispatch({ type: 'add_location', payload: location });
@@ -40,7 +41,6 @@ const addLocation = dispatch => (location, recording) => {
 }
 
 const changeTrackName = dispatch => name => {
-  console.log('change name');
   dispatch({ type: 'change_name', payload: name });
 }
 
