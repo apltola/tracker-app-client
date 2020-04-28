@@ -68,7 +68,7 @@ function App() {
             name="TrackCreate"
             component={TrackCreateScreen}
             options={{
-              tabBarLabel: "Create New Track"
+              tabBarLabel: "New Track"
             }}
           />
           <Tab.Screen
